@@ -3,6 +3,7 @@ import 'package:flutter/material.dart'
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'auth_service.dart';
 import 'login.dart';
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -12,6 +13,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  AuthService authService = Get.put(AuthService());
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -40,7 +42,7 @@ class _RegisterState extends State<Register> {
               Padding(padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                   child:  Align(
                     alignment: Alignment.center,
-                    child:  Text("Sign up",
+                    child:  Text("S'inscrire",
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       style: GoogleFonts.montserrat(
@@ -55,7 +57,7 @@ class _RegisterState extends State<Register> {
               Padding(padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
                   child: Align(
               alignment: Alignment.centerLeft,
-              child:  Text("Kindly enter your details",
+              child:  Text("Veuillez entrer vos coordonnées",
                 textAlign: TextAlign.left,
                 maxLines: 2,
                 style: GoogleFonts.montserrat(
@@ -81,12 +83,13 @@ class _RegisterState extends State<Register> {
                     ),
                     //prefixText: '+225',
                     border: InputBorder.none,
-                    labelText: "Name",
+                    labelText: "Nom et Prenoms",
                   ),
                   keyboardType: TextInputType.name,
                   onChanged: (value) {
 
                   },
+                  controller: authService.inputNomController,
                 ),
               ),
               const SizedBox(height: 10,),
@@ -113,6 +116,7 @@ class _RegisterState extends State<Register> {
                   onChanged: (value) {
 
                   },
+                  controller: authService.inputEmailController,
                 ),
               ),
               const SizedBox(height: 10,),
@@ -133,12 +137,13 @@ class _RegisterState extends State<Register> {
                     ),
                     // prefixText: '+225',
                     border: InputBorder.none,
-                    labelText: "Password",
+                    labelText: "Mot de passe",
                   ),
                   keyboardType: TextInputType.visiblePassword,
                   onChanged: (value) {
                     print(value);
                   },
+                  controller: authService.inputPwdController,
                 ),
               ),
               const SizedBox(height: 10,),
@@ -159,19 +164,25 @@ class _RegisterState extends State<Register> {
                     ),
                     // prefixText: '+225',
                     border: InputBorder.none,
-                    labelText: "Confirm Password",
+                    labelText: "Confirmer le mot de passe",
                   ),
                   keyboardType: TextInputType.visiblePassword,
                   onChanged: (value) {
                     print(value);
                   },
+                  controller: authService.inputConfPwdController,
                 ),
               ),
               const SizedBox(height: 10,),
               /* AbsorbPointer(
                 absorbing: authService.hideLogin.value,
                   child:*/InkWell(
-                onTap: (){ },
+                onTap: (){
+                  print(authService.inputConfPwdController.value);
+                  print(authService.inputEmailController.value);
+                  authService.statusChange();
+                  authService.createUserWithEmailAndPassword(authService.inputNomController.text, authService.inputEmailController.text, authService.inputPwdController.text ,authService.inputConfPwdController.text);
+                },
                 child: Container(
                   height: 55,
                   width: MediaQuery.of(context).size.width / 1.3,
@@ -188,13 +199,16 @@ class _RegisterState extends State<Register> {
                       ),
                     ],
                   ),
-                  child:Text("Sign up",
+                  child: Obx(() {
+                    return authService.load.value
+                        ? CircularProgressIndicator(color: Colors.white,)
+                        : Text("S\'inscrire",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
-                        fontSize: 18,),)
-                  ),
+                        fontSize: 18,),);
+                      }))
                 ),
 
               SizedBox(height: 10,),
@@ -203,7 +217,7 @@ class _RegisterState extends State<Register> {
                   Get.to(() => const Login(), transition: Transition.leftToRight,
                       duration: const Duration(seconds: 2));
                 },
-                child: Text('Already have an account? Login',
+                child: const Text('Vous avez déjà un compte? Se connecter',
                   style: TextStyle(
                     color: Colors.black,
                   ),

@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
               Padding(padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
                   child:  Align(
                     alignment: Alignment.center,
-                    child:  Text("Login",
+                    child:  Text("Connectez-vous",
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       style: GoogleFonts.montserrat(
@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
               Padding(padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child:  Text("Welcome back !",
+                    child:  Text("Content de vous revoir!",
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       style: GoogleFonts.montserrat(
@@ -108,7 +108,7 @@ class _LoginState extends State<Login> {
                     ),
                     // prefixText: '+225',
                     border: InputBorder.none,
-                    labelText: "Password",
+                    labelText: "Mot de passe",
                   ),
                   keyboardType: TextInputType.visiblePassword,
                   onChanged: (value) {
@@ -120,7 +120,7 @@ class _LoginState extends State<Login> {
               Padding(padding: const EdgeInsets.fromLTRB(0, 0, 35, 0),
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child:  Text("Forget Password ?",
+                    child:  Text("Mot de passe oublié ?",
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       style: GoogleFonts.montserrat(
@@ -154,7 +154,7 @@ class _LoginState extends State<Login> {
                         ),
                       ],
                     ),
-                    child:Text("Login",
+                    child:Text("Se connecter",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
                         color: Colors.black,
@@ -169,7 +169,7 @@ class _LoginState extends State<Login> {
                   Get.to(() => const Register(), transition: Transition.leftToRight,
                       duration: const Duration(seconds: 2));
                 },
-                child: Text('Don\'t have an account? Sign up',
+                child: Text('Vous n\'avez pas de compte? S\'inscrire',
                   style: TextStyle(
                     color: Colors.black,
                   ),
