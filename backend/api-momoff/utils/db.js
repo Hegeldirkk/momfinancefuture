@@ -6,7 +6,7 @@ const env = require('process');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 class DBClient {
   constructor() {
-    this.username = env.DB_USERNAME || 'root';
+    this.username = env.DB_USERNAME || '';
     this.password = env.DB_PASSWORD || '';
     this.host = env.DB_HOST || 'localhost';
     this.port = env.DB_PORT || 27017;
