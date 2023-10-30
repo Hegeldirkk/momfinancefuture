@@ -17,6 +17,7 @@ class DBClient {
       this.db = this.client.db(this.dbName);
       console.log(`Connected to MongoDB`);
     }).catch((err) => {
+      console.log(`error to Connected momgodb`);
       console.error(err.message);
     });
   }
