@@ -4,6 +4,7 @@ const router = require('./routes');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const env = require('process');
 const dbClient = require('./utils/db');
+const redisClient = require('./utils/redis');
 
 
 const app = express();
@@ -32,3 +33,4 @@ app.use(router);
 //  });
 app.listen(port, () => console.log(`Server running on port ${port}`));
 dbClient.isAlive()
+redisClient.isAlive()
