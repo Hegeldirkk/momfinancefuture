@@ -12,7 +12,7 @@ class DBClient {
     this.port = env.DB_PORT || 27017;
     this.dbName = env.DB_DATABASE || 'momoff-db';
     const uri = "mongodb+srv://hegeldirkk:IxbLtImLTzCyrx9r@cluster0.ffolp2x.mongodb.net/?retryWrites=true&w=majority";
-    MongoClient(`${uri}`, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 }).connect().then((client) => {
+    MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 }).connect().then((client) => {
       this.client = client;
       this.db = this.client.db(this.dbName);
       console.log(`Connected to MongoDB`);
