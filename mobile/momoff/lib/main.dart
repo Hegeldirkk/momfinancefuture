@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-late User user;
+User user = User();
 String? token;
 
 
