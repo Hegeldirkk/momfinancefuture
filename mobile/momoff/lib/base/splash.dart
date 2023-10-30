@@ -1,7 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../api/secure.dart';
+import '../main.dart';
+import '../pages/home.dart';
 import 'onboard.dart';
 
 class Splash extends StatefulWidget {
@@ -21,14 +25,20 @@ class _SplashState extends State<Splash> {
   }
 
   Future<void> myToken(context) async {
-    //token = await UserSecureStorage.getTokenAuth();
+    token = await UserSecureStorage.getTokenAuth();
     //final auth = Provider.of<AuthProvider>(context, listen: false);
     Timer(
         const Duration(
           milliseconds: 500,
           seconds: 3,
         ), () async {
-      Navigator.pushReplacementNamed(context, OnBoard.id);
+          if (token != null) {
+            Get.to(() => const Home(),
+                transition: Transition.zoom,
+                duration: const Duration(seconds: 1));
+          }else{
+            Navigator.pushReplacementNamed(context, OnBoard.id);
+          }
     });
   }
 

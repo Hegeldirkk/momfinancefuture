@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../pages/home.dart';
+import 'auth_service.dart';
 import 'signup.dart';
 
 class Login extends StatefulWidget {
@@ -13,6 +14,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  AuthService authService = Get.put(AuthService());
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -88,6 +91,7 @@ class _LoginState extends State<Login> {
                   onChanged: (value) {
 
                   },
+                  controller: authService.inputEmailController,
                 ),
               ),
               const SizedBox(height: 10,),
@@ -111,9 +115,11 @@ class _LoginState extends State<Login> {
                     labelText: "Mot de passe",
                   ),
                   keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
                   onChanged: (value) {
                     print(value);
                   },
+                  controller: authService.inputPwdController,
                 ),
               ),
               const SizedBox(height: 10,),
@@ -135,41 +141,45 @@ class _LoginState extends State<Login> {
                 absorbing: authService.hideLogin.value,
                   child:*/InkWell(
                 onTap: (){
-                  Get.to(()=> const Home(), transition: Transition.leftToRight,
-                         duration: const Duration(seconds: 2));
+                  authService.statusChange();
+                  authService.signUserWithEmailAndPassword(authService.inputEmailController.text, authService.inputPwdController.text);
+
                 },
                 child: Container(
                     height: 55,
                     width: MediaQuery.of(context).size.width / 1.3,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Color(0xFFefc50d),
+                      color: const Color(0xFFefc50d),
                       borderRadius: BorderRadius.all(Radius.circular(50.0)),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.1),
                           spreadRadius: 2,
                           blurRadius: 6,
-                          offset: Offset(0, 3),
+                          offset: const Offset(0, 3),
                         ),
                       ],
                     ),
-                    child:Text("Se connecter",
+                    child:Obx(() {
+                      return authService.load.value
+                          ? const CircularProgressIndicator(color: Colors.white,)
+                          : Text("Se connecter",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
-                        fontSize: 18,),)
+                        fontSize: 18,),);}),
                 ),
               ),
 
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               InkWell(
                 onTap: (){
                   Get.to(() => const Register(), transition: Transition.leftToRight,
                       duration: const Duration(seconds: 2));
                 },
-                child: Text('Vous n\'avez pas de compte? S\'inscrire',
+                child: const Text('Vous n\'avez pas de compte? S\'inscrire',
                   style: TextStyle(
                     color: Colors.black,
                   ),

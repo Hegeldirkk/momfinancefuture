@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'api/user.dart';
 import 'base/onboard.dart';
 import 'base/splash.dart';
 
@@ -16,6 +17,10 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
+
+late User user;
+String? token;
+
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.

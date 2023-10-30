@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:momoff/api/user.dart';
 
+import '../main.dart';
 import 'perso.dart';
 
 class Home extends StatefulWidget {
@@ -43,7 +45,7 @@ class _HomeState extends State<Home> {
                      ),
                      Padding(padding: EdgeInsets.only(left: 18),
                        child:Text(
-                       'NATA V. 👋',
+                       '${user.name} 👋',
                        textAlign: TextAlign.center,
                        style: TextStyle(
                          color: kDarkBlueColor,
@@ -189,7 +191,7 @@ class _HomeState extends State<Home> {
                    SizedBox(height: 5,),
                    InkWell(
                      onTap: (){
-                       Get.to(() => const ONG(), transition: Transition.zoom,
+                       Get.to(() => const ONG(), transition: Transition.cupertino,
                            duration: const Duration(seconds: 2));
                      },
                      child:
