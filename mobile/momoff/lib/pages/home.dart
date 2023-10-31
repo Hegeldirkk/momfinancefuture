@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:momoff/api/user.dart';
 
+import '../auth/auth_service.dart';
 import '../main.dart';
 import 'perso.dart';
 
@@ -13,6 +14,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  AuthService authService = Get.put(AuthService());
+
   final Color kDarkBlueColor = const Color(0xFFefc50d);
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,7 @@ class _HomeState extends State<Home> {
                      ),
                      Padding(padding: EdgeInsets.only(left: 18),
                        child:Text(
-                       '${user.name} 👋',
+                       '${authService.inputNomController.text} 👋',
                        textAlign: TextAlign.center,
                        style: TextStyle(
                          color: kDarkBlueColor,

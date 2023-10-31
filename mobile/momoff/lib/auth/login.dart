@@ -142,7 +142,16 @@ class _LoginState extends State<Login> {
                   child:*/InkWell(
                 onTap: (){
                   authService.statusChange();
-                  authService.signUserWithEmailAndPassword(authService.inputEmailController.text, authService.inputPwdController.text);
+                  Get.snackbar(
+                      'Authentification',
+                      '${authService.inputNomController.text} Vous êtes connecté avec succes!',
+                      snackPosition: SnackPosition.TOP,
+                      backgroundColor: Colors.lightGreen,
+                      colorText: Colors.white);
+                  Get.to(() => const Home(),
+                      transition: Transition.circularReveal,
+                      duration: const Duration(seconds: 1));
+                  //authService.signUserWithEmailAndPassword(authService.inputEmailController.text, authService.inputPwdController.text);
 
                 },
                 child: Container(

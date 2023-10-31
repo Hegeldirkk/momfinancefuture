@@ -180,10 +180,16 @@ class _RegisterState extends State<Register> {
                 absorbing: authService.hideLogin.value,
                   child:*/InkWell(
                 onTap: (){
+                  authService.statusChange();
                   print(authService.inputConfPwdController.value);
                   print(authService.inputEmailController.value);
                   authService.statusChange();
-                  authService.createUserWithEmailAndPassword(authService.inputNomController.text, authService.inputEmailController.text, authService.inputPwdController.text ,authService.inputConfPwdController.text);
+                  Get.snackbar(
+                      'Inscription',
+                      'Vous êtes inscrit avec succes! (vu que notre serveur n\'est pas en prod, linscription rest une simulation.)',
+                      snackPosition: SnackPosition.TOP, backgroundColor: Colors.lightGreen, colorText: Colors.white);
+                  Get.to(() => const Login(), transition: Transition.leftToRightWithFade, duration: const Duration(seconds: 1));
+                  //authService.createUserWithEmailAndPassword(authService.inputNomController.text, authService.inputEmailController.text, authService.inputPwdController.text ,authService.inputConfPwdController.text);
                 },
                 child: Container(
                   height: 55,
