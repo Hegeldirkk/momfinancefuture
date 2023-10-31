@@ -14,7 +14,7 @@ COPY ./backend/api-momoff/package.json /usr/src/app/
 RUN apk update
 
 # Installation des dépendances système nécessaires pour "sharp"
-RUN apk add --no-cache vips-dev build-base
+#RUN apk add --no-cache vips-dev build-base
 
 # Installation des dépendances Node.js et nettoyage du cache
 RUN npm install && npm cache clean --force
