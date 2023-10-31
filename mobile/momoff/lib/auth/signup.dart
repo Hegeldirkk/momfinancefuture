@@ -129,6 +129,7 @@ class _RegisterState extends State<Register> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
+                  obscureText: true,
                   decoration: const InputDecoration(
                     fillColor: Colors.white,
                     prefixIcon: Icon(
@@ -166,6 +167,7 @@ class _RegisterState extends State<Register> {
                     border: InputBorder.none,
                     labelText: "Confirmer le mot de passe",
                   ),
+                  obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
                   onChanged: (value) {
                     print(value);

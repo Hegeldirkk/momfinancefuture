@@ -221,7 +221,7 @@ class ChxIns extends StatelessWidget {
 
             Column(
               children: [
-                Text("AKWABA",
+                Text("AKWABA \n sur FinanceFuture",
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: GoogleFonts.raleway(
@@ -232,7 +232,7 @@ class ChxIns extends StatelessWidget {
                 ),
 
                 Padding(padding: EdgeInsets.only(left: 18, right: 25),
-                child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum h",
+                child: Text("Transformer vos dons\n en une opportunité",
                   textAlign: TextAlign.center,
                   maxLines: 4,
                   style: GoogleFonts.raleway(
