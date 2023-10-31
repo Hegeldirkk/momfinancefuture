@@ -180,10 +180,10 @@ class _RegisterState extends State<Register> {
                 absorbing: authService.hideLogin.value,
                   child:*/InkWell(
                 onTap: (){
-                  authService.statusChange();
-                  print(authService.inputConfPwdController.value);
-                  print(authService.inputEmailController.value);
-                  authService.statusChange();
+                  //authService.statusChange();
+                  //print(authService.inputConfPwdController.value);
+                  //print(authService.inputEmailController.value);
+                  //authService.statusChange();
                   Get.snackbar(
                       'Inscription',
                       'Vous êtes inscrit avec succes! (vu que notre serveur n\'est pas en prod, linscription rest une simulation.)',

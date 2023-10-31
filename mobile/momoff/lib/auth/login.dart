@@ -141,7 +141,7 @@ class _LoginState extends State<Login> {
                 absorbing: authService.hideLogin.value,
                   child:*/InkWell(
                 onTap: (){
-                  authService.statusChange();
+                  //authService.statusChange();
                   Get.snackbar(
                       'Authentification',
                       '${authService.inputNomController.text} Vous êtes connecté avec succes!',
