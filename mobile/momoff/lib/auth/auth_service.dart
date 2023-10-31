@@ -49,7 +49,7 @@ class AuthService extends GetxController{
   Future<void> createUserWithEmailAndPassword(String name, String emailAddress, String password, String confirmPassword) async {
     load(true);
     try {
-      var url = Uri.parse('http://192.168.43.230:6000/signup');
+      var url = Uri.parse('https://shiny-doors-teach.loca.lt/signup');
       await http.post(url, body: {'name': name, 'email': emailAddress, 'password': password, 'confirmPassword': confirmPassword }).then((value) async {
         print(value.statusCode);
         if (value.statusCode == 201){
@@ -103,7 +103,7 @@ class AuthService extends GetxController{
   Future<void> signUserWithEmailAndPassword(String emailAddress, String password) async {
     load(true);
     try {
-      var url = Uri.parse('http://192.168.43.230:6000/login');
+      var url = Uri.parse('https://shiny-doors-teach.loca.lt/login');
       await http.post(url, body: {'email': emailAddress, 'password': password})
           .then((value) async {
         print(value.statusCode);

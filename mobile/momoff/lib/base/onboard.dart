@@ -281,8 +281,8 @@ class ChxIns extends StatelessWidget {
 
                   ElevatedButton(
                       onPressed: (){
-                        //Get.to(()=> const Register(), transition: Transition.leftToRight,
-                         //   duration: const Duration(seconds: 2));
+                        Get.to(()=> const Login(), transition: Transition.leftToRight,
+                            duration: const Duration(seconds: 2));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:  const Color(0xFFefc50d),
