@@ -270,6 +270,9 @@ class PaymentInfo extends StatelessWidget {
                           SizedBox(height: 16,),
                           InkWell(
                               onTap: (){
+
+                                Get.to(() => const Comments(), transition: Transition.fade,
+                                    duration: const Duration(seconds: 2));
                               },
                               child: Container(
                                 margin: EdgeInsets.only(right: 42),
@@ -365,45 +368,11 @@ class Comments extends StatelessWidget {
               children: [
                 SizedBox(height: height / 10,),
 
-                Padding(padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child:  Text("Nom du receveur",
-                        textAlign: TextAlign.left,
-                        maxLines: 2,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 13,
-                            color: kDarkBlueColor,
-                            fontWeight: FontWeight.w500
-                        ),
-                      ),)),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
-                  margin: EdgeInsets.fromLTRB(width * 0.1, height * 0.009, width * 0.1, 0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextField(
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      //prefixText: '+225',
-                      border: InputBorder.none,
-                      hintText: "    Pro-kids Côte d'Ivoire",
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) {
-
-                    },
-                  ),
-                ),
-
                 const SizedBox(height: 20,),
                 Padding(padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child:  Text("Nom du donateur",
+                      child:  Text("Message au receveur(optionnel)",
                         textAlign: TextAlign.left,
                         maxLines: 2,
                         style: GoogleFonts.montserrat(
@@ -413,7 +382,7 @@ class Comments extends StatelessWidget {
                         ),
                       ),)),
                 Container(
-                  padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   margin: EdgeInsets.fromLTRB(width * 0.1, height * 0.009, width * 0.1, 0),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
@@ -425,42 +394,7 @@ class Comments extends StatelessWidget {
                       fillColor: Colors.white,
                       //prefixText: '+225',
                       border: InputBorder.none,
-                      hintText: "    Ashfak Sayem",
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) {
-
-                    },
-                  ),
-                ),
-
-                const SizedBox(height: 20,),
-                Padding(padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child:  Text("Valeur du don",
-                        textAlign: TextAlign.left,
-                        maxLines: 2,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 13,
-                            color: kDarkBlueColor,
-                            fontWeight: FontWeight.w500
-                        ),
-                      ),)),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
-                  margin: EdgeInsets.fromLTRB(width * 0.1, height * 0.009, width * 0.1, 0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextField(
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      //prefixText: '+225',
-                      border: InputBorder.none,
-                      hintText: "    10 000 Francs CFA",
+                      hintText: "    Laissez un message",
                     ),
                     keyboardType: TextInputType.text,
                     onChanged: (value) {
@@ -474,8 +408,9 @@ class Comments extends StatelessWidget {
                   child:*/InkWell(
                     onTap: (){
                       showDialog(context: context, builder: (_) => AlertDialog(
-                        actionsAlignment: MainAxisAlignment.start,
+                        actionsAlignment: MainAxisAlignment.center,
                         actions: [
+                          SizedBox(height: 16,),
                           Container(
                             padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
                             margin: EdgeInsets.fromLTRB(width * 0.1, height * 0.009, width * 0.1, 0),
@@ -484,46 +419,22 @@ class Comments extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: TextField(
-                              decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                //prefixText: '+225',
-                                border: InputBorder.none,
-                                hintText: "    Code secret",
-                              ),
-                              keyboardType: TextInputType.emailAddress,
-                              onChanged: (value) {
-
-                              },
+                            child: Image.asset(
+                              'assets/info/check-transaction.gif',
+                              fit: BoxFit.contain,
+                              alignment: Alignment.center,
                             ),
                           ),
-                          InkWell(
-                              onTap: (){
-                              },
-                              child: Container(
-                                height: 55,
-                                width: MediaQuery.of(context).size.width / 1.3,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFefc50d),
-                                  borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      spreadRadius: 2,
-                                      blurRadius: 6,
-                                      offset: const Offset(0, 3),
-                                    ),
-                                  ],
-                                ),
-                                child: Text("Confirmez",
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.montserrat(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,)
-                                ),)
+                          Text("Félicitation, votre paiement a été éffectué avec succes !",
+                            textAlign: TextAlign.left,
+                            maxLines: 2,
+                            style: GoogleFonts.montserrat(
+                                fontSize: 13,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500
+                            ),
                           ),
+                          SizedBox(height: 25,),
                         ],
                       ));
                     },
@@ -543,7 +454,7 @@ class Comments extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Text("Confirmez",
+                      child: Text("Envoyer",
                           textAlign: TextAlign.center,
                           style: GoogleFonts.montserrat(
                             color: Colors.black,
@@ -559,4 +470,5 @@ class Comments extends StatelessWidget {
     );
   }
 }
+
 
