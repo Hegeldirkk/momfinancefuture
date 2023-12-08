@@ -11,14 +11,21 @@ const {
 class RedisClient {
   constructor() {
 
-    this.client = createClient({
+ this.client = createClient({
+    password: '123r7GMnL6tN0ITtItRAFrtEibBPTB1T',
+    socket: {
+        host: 'redis-10318.c274.us-east-1-3.ec2.cloud.redislabs.com',
+        port: 10318
+    }
+});
+    /*this.client = createClient({
       
       socket: {
         password: 'jBSs2NsSLFnKxDvvUtZ2ONyJvW8j8CAe',
           host: 'redis-12921.c258.us-east-1-4.ec2.cloud.redislabs.com',
           port: 12921
       }
-    });
+    });*/
     this.client.on('error', (err) => {
       console.log(err.message);
     });
