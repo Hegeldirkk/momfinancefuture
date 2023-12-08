@@ -19,6 +19,13 @@ class RedisClient {
         port: process.env.REDIS_PORT || 10318
     }
 });
+
+this.client.on('connect', () => {
+  console.log('Connected to Redis');
+});
+
+console.log('Redis host:', process.env.REDIS_HOST);
+console.log('Redis port:', process.env.REDIS_PORT);
     /*this.client = createClient({
       
       socket: {
@@ -31,9 +38,7 @@ class RedisClient {
       console.log(err.message);
     });
 
-    this.client.on('connect', () => {
-      console.log('Connected to Redis');
-    });
+    
   }
 
   isAlive() {
