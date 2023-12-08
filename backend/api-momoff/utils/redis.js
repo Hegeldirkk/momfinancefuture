@@ -12,8 +12,9 @@ class RedisClient {
   constructor() {
 
  this.client = createClient({
-    password: '123r7GMnL6tN0ITtItRAFrtEibBPTB1T',
+   
     socket: {
+      password: '123r7GMnL6tN0ITtItRAFrtEibBPTB1T',
         host: 'redis-10318.c274.us-east-1-3.ec2.cloud.redislabs.com',
         port: 10318
     }
