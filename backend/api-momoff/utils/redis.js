@@ -15,8 +15,8 @@ class RedisClient {
    
     socket: {
       password: '123r7GMnL6tN0ITtItRAFrtEibBPTB1T',
-        host: 'redis-10318.c274.us-east-1-3.ec2.cloud.redislabs.com',
-        port: 10318
+        host:  process.env.REDIS_HOST || 'redis-10318.c274.us-east-1-3.ec2.cloud.redislabs.com',
+        port: process.env.REDIS_PORT || 10318
     }
 });
     /*this.client = createClient({
@@ -29,6 +29,10 @@ class RedisClient {
     });*/
     this.client.on('error', (err) => {
       console.log(err.message);
+    });
+
+    this.client.on('connect', () => {
+      console.log('Connected to Redis');
     });
   }
 
