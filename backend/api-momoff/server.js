@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(router);
 
-// Connect to MongoDB
+
 //const username = env.DB_USERNAME || 'root';
 //const password = env.DB_PASSWORD || '';
 //const host = env.DB_HOST || 'localhost';
