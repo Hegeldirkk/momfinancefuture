@@ -1,14 +1,12 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const router = require('./routes');
-const { MongoClient, ServerApiVersion } = require('mongodb');
 const env = require('process');
 const dbClient = require('./utils/db');
 //const redisClient = require('./utils/redis');
 
 
 const app = express();
-const port = env.PORT || 6000;
+const port = env.PORT || 3000;
 
 
 app.use(express.json());

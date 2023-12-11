@@ -3,7 +3,7 @@ const { validationResult } = require('express-validator');
 const bcrypt  = require('bcryptjs');
 const dbClient = require('../utils/db');
 const { v4: uuidv4 } = require('uuid');
-const redisClient = require('../utils/redis');
+//const redisClient = require('../utils/redis'); "redis": "^2.8.0",
 
 
 class AuthController {
@@ -86,7 +86,7 @@ class AuthController {
       if (verificationPasswords) {
         const token = uuidv4();
         const key = `momoffauth-${token}`;
-        await redisClient.set(key, logUser._id.toString(), 43200)
+        //await redisClient.set(key, logUser._id.toString(), 43200)
         delete logUser.passwordUser;
         return res.status(200).json({errors: false, message:"Connecté avec succes", data: logUser, token: key});
       }
