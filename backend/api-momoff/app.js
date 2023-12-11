@@ -6,7 +6,7 @@ const dbClient = require('./utils/db');
 
 
 const app = express();
-const port = env.PORT || 3000;
+const port = env.PORT || 80;
 
 
 app.use(express.json());
