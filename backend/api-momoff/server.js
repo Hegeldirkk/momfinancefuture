@@ -4,7 +4,7 @@ const router = require('./routes');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const env = require('process');
 const dbClient = require('./utils/db');
-const redisClient = require('./utils/redis');
+//const redisClient = require('./utils/redis');
 
 
 const app = express();
