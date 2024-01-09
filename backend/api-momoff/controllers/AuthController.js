@@ -22,20 +22,23 @@ class AuthController {
     console.log(req.body);
     if (!email) {
       res.status(400).send({
-        error: 'Missing email',
+        errors: true,
+        message:  'Missing email',
       });
       return;
     }
     if (!password && !confirmPassword) {
       res.status(400).send({
-        error: 'password non fourni',
+        errors: true,
+        message:  'password non fourni',
       });
       return;
     }
 
     if (password != confirmPassword) {
       res.status(400).send({
-        error: 'Passwords ne concorde pas',
+        errors: true,
+        message: 'Passwords ne concorde pas',
       });
       return;
     }
@@ -113,7 +116,8 @@ class AuthController {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: true,
+        message:  errors.array() });
     }
 
     const { name, desc, tel, email, date_creation, obj1, obj2 } = req.body;
