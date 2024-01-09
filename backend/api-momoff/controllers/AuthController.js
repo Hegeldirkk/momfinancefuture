@@ -101,6 +101,46 @@ class AuthController {
 
   }
 
+  // Add ONG
+  static async postSignupOng(req, res) {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { name, desc, tel, email, date_creation, obj1, obj2 } = req.body;
+
+
+    console.log(req.body);
+    if (!email && !date_creation && !name && !desc, !tel && !obj1) {
+      res.status(400).json({
+        errors: true,
+        message: "Assurez de ne pas laisser vide les champs obligatoires",
+        comments: ["email", "date_creation", "name", "desc", "tel", "obj1"],
+        data: null
+      });
+      return;
+    }
+
+    try {
+      const existingOng = await dbClient.checkOng(email)
+      console.log(existingOng)
+      if (existingOng && existingOng.email == email) {
+        return res.status(400).json({ errors: true, message: 'Cet email est déjà utilisé.' });
+      }
+
+      
+      const newOng = { name, desc, tel, email, date_creation, obj1, obj2 };
+      await dbClient.addOng(newOng)
+      return res.status(201).json({ errors: false, message: 'ONG enregistré avec succes.', data: newOng });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({errors:true, message: 'Erreur serveur.', error: error });
+    }
+
+  }
+
 }
 
 module.exports = AuthController;

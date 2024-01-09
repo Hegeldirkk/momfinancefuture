@@ -62,6 +62,18 @@ class DBClient {
     return collection.updateOne({ _id: userId }, { $set: userData });
   }
 
+  // Create a new ong document
+  async addOng(ongData) {
+    const collection = dbClient.db.collection('ong');
+    return collection.insertOne(ongData);
+  }
+
+  /* add user */
+  async checkOng(email) {
+    const users = this.db.collection('ong');
+    const check = await users.findOne({ email });
+    return check;
+  }
 
 }
 
