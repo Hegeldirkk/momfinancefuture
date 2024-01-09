@@ -9,7 +9,7 @@ bit.ly/3RQiq6q
 
 - or by qrcode
 
-![logomomofinancefututre](https://github.com/Hegeldirkk/momfinancefuture/bit.ly_3RQiq6q.png)
+![logomomofinancefututre](https://momoff.technology.dirkk.tech/img/bit.ly_3RQiq6q.png)
 
 ## Signup login and give a gift
 - creez un compte
