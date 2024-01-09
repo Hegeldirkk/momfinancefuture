@@ -45,8 +45,6 @@ class PayController {
     async performRequestToPay() {
         try {
 
-          if ()
-          await this.getAccessToken();
 
             if (tokenExpirationTime && tokenExpirationTime < Date.now()) {
                 console.log('Token has expired..');

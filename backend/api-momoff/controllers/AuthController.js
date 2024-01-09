@@ -28,7 +28,14 @@ class AuthController {
     }
     if (!password && !confirmPassword) {
       res.status(400).send({
-        error: 'Missing password',
+        error: 'password non fourni',
+      });
+      return;
+    }
+
+    if (password != confirmPassword) {
+      res.status(400).send({
+        error: 'Passwords ne concorde pas',
       });
       return;
     }
