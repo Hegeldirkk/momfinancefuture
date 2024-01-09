@@ -10,6 +10,7 @@ class BestOffer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -17,8 +18,8 @@ class BestOffer extends StatelessWidget {
         vertical: 12,
       ),
       child: Container(
-        height: 220,
-        width: 300,
+        height: MediaQuery.of(context).size.height * 0.35,
+        width: MediaQuery.of(context).size.width * 1.2,
         decoration: BoxDecoration(
           // color: Colors.blue,
           color: Colors.grey[200],

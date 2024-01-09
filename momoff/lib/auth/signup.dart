@@ -14,6 +14,8 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   AuthService authService = Get.put(AuthService());
+  bool hidePwd = true;
+  bool hidePwd2 = true;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -84,7 +86,7 @@ class _RegisterState extends State<Register> {
                     ),
                     //prefixText: '+225',
                     border: InputBorder.none,
-                    labelText: "Nom et Prenoms",
+                    labelText: "   Nom et Prenoms",
                   ),
                   keyboardType: TextInputType.name,
                   onChanged: (value) {
@@ -111,7 +113,7 @@ class _RegisterState extends State<Register> {
                     ),
                     //prefixText: '+225',
                     border: InputBorder.none,
-                    labelText: "Email",
+                    labelText: "   Email",
                   ),
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (value) {
@@ -130,13 +132,20 @@ class _RegisterState extends State<Register> {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: TextField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
+                  obscureText: hidePwd,
+                  decoration: InputDecoration(
                     fillColor: Colors.white,
-                    prefixIcon: Icon(
-                      Icons.lock_outline,
-                      color: Colors.grey,
-                    ),
+                    prefixIcon: ElevatedButton.icon(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),
+                          elevation: MaterialStateProperty.all<double?>(0),
+                        ),
+                        onPressed: ()=> setState((){
+                          if (hidePwd)
+                            hidePwd = false;
+                          else
+                            hidePwd = true;
+                        }), icon: Icon(hidePwd ? Icons.lock_outline : Icons.lock_open_sharp, color: hidePwd ? Colors.grey : const Color(0xFFefc50d),), label: SizedBox()),
                     // prefixText: '+225',
                     border: InputBorder.none,
                     labelText: "Mot de passe",
@@ -158,17 +167,24 @@ class _RegisterState extends State<Register> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: TextField(
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     fillColor: Colors.white,
-                    prefixIcon: Icon(
-                      Icons.lock_outline,
-                      color: Colors.grey,
-                    ),
+                    prefixIcon: ElevatedButton.icon(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),
+                          elevation: MaterialStateProperty.all<double?>(0),
+                        ),
+                        onPressed: ()=> setState((){
+                          if (hidePwd2)
+                            hidePwd2 = false;
+                          else
+                            hidePwd2 = true;
+                        }), icon: Icon(hidePwd2 ? Icons.lock_outline : Icons.lock_open_sharp, color: hidePwd2 ? Colors.grey : const Color(0xFFefc50d),), label: SizedBox()),
                     // prefixText: '+225',
                     border: InputBorder.none,
                     labelText: "Confirmer le mot de passe",
                   ),
-                  obscureText: true,
+                  obscureText: hidePwd2,
                   keyboardType: TextInputType.visiblePassword,
                   onChanged: (value) {
                     print(value);
@@ -177,20 +193,20 @@ class _RegisterState extends State<Register> {
                 ),
               ),
               const SizedBox(height: 10,),
-              /* AbsorbPointer(
+              AbsorbPointer(
                 absorbing: authService.hideLogin.value,
-                  child:*/InkWell(
+                  child:InkWell(
                 onTap: (){
                   //authService.statusChange();
                   //print(authService.inputConfPwdController.value);
                   //print(authService.inputEmailController.value);
                   //authService.statusChange();
-                  Get.snackbar(
+                  /*Get.snackbar(
                       'Inscription',
                       'Vous êtes inscrit avec succes! (vu que notre serveur n\'est pas en production, l’inscription rest une simulation.)',
                       snackPosition: SnackPosition.TOP, backgroundColor: Colors.lightGreen, colorText: Colors.white);
-                  Get.to(() => Login(), transition: Transition.leftToRightWithFade, duration: const Duration(seconds: 1));
-                  //authService.createUserWithEmailAndPassword(authService.inputNomController.text, authService.inputEmailController.text, authService.inputPwdController.text ,authService.inputConfPwdController.text);
+                  Get.to(() => Login(), transition: Transition.leftToRightWithFade, duration: const Duration(seconds: 1));*/
+                  authService.createUserWithEmailAndPassword(authService.inputNomController.text, authService.inputEmailController.text, authService.inputPwdController.text ,authService.inputConfPwdController.text);
                 },
                 child: Container(
                   height: 55,
@@ -218,7 +234,7 @@ class _RegisterState extends State<Register> {
                         fontWeight: FontWeight.w500,
                         fontSize: 18,),);
                       }))
-                ),
+                )),
 
               SizedBox(height: 10,),
               InkWell(

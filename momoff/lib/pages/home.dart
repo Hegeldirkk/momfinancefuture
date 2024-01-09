@@ -25,6 +25,7 @@ class Home extends StatefulWidget {
 class _HomePageState extends State<Home> {
   
   AuthService authService = Get.put(AuthService());
+  final userName = user.name;
   
   final Color kDarkBlueColor = const Color(0xFFefc50d);
   @override
@@ -68,18 +69,18 @@ class _HomePageState extends State<Home> {
 
                     Padding(padding: const EdgeInsets.only(left: 0),
                      child: Text(
-                       'Bienvenue ,',
+                       'Bienvenue 👋 ,',
                        textAlign: TextAlign.left,
                        style: TextStyle(
                          color: kDarkBlueColor,
-                         fontSize: 20.0,
+                         fontSize: 16.0,
                          fontWeight: FontWeight.w400,
                        ),
                      ),
                      ),
                      Padding(padding: const EdgeInsets.only(left: 18),
                        child:Text(
-                       '${authService.inputNomController.text} 👋',
+                       userName!.length > 6 ? '${userName!.substring(0, 6)}...' : '$userName',
                        textAlign: TextAlign.center,
                        style: TextStyle(
                          color: kDarkBlueColor,

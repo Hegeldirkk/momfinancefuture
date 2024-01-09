@@ -15,6 +15,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   AuthService authService = Get.put(AuthService());
+  bool hidePwd = true;
 
   @override
   Widget build(BuildContext context) {
@@ -105,18 +106,25 @@ class _LoginState extends State<Login> {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: TextField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     fillColor: Colors.white,
-                    prefixIcon: Icon(
-                      Icons.lock_outline,
-                      color: Colors.grey,
-                    ),
+                    prefixIcon: ElevatedButton.icon(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),
+                          elevation: MaterialStateProperty.all<double?>(0),
+                        ),
+                        onPressed: ()=> setState((){
+                          if (hidePwd)
+                            hidePwd = false;
+                          else
+                            hidePwd = true;
+                        }), icon: Icon(hidePwd ? Icons.lock_outline : Icons.lock_open_sharp, color: hidePwd ? Colors.grey : const Color(0xFFefc50d),), label: SizedBox()),
                     // prefixText: '+225',
                     border: InputBorder.none,
                     labelText: "Mot de passe",
                   ),
                   keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
+                  obscureText: hidePwd,
                   onChanged: (value) {
                     print(value);
                   },
@@ -138,12 +146,13 @@ class _LoginState extends State<Login> {
                     ),)),
 
               const SizedBox(height: 25,),
-              /* AbsorbPointer(
+               AbsorbPointer(
                 absorbing: authService.hideLogin.value,
-                  child:*/InkWell(
+                  child:InkWell(
                 onTap: (){
+                  print(authService.inputEmailController.text);
                   //authService.statusChange();
-                  Get.snackbar(
+                  /*Get.snackbar(
                       'Authentification',
                       '${authService.inputNomController.text} Vous êtes connecté avec succes!',
                       snackPosition: SnackPosition.TOP,
@@ -151,8 +160,8 @@ class _LoginState extends State<Login> {
                       colorText: Colors.white);
                   Get.to(() => const Home(),
                       transition: Transition.circularReveal,
-                      duration: const Duration(seconds: 1));
-                  //authService.signUserWithEmailAndPassword(authService.inputEmailController.text, authService.inputPwdController.text);
+                      duration: const Duration(seconds: 1));*/
+                  authService.signUserWithEmailAndPassword(authService.inputEmailController.text, authService.inputPwdController.text);
 
                 },
                 child: Container(
@@ -181,7 +190,7 @@ class _LoginState extends State<Login> {
                         fontWeight: FontWeight.w500,
                         fontSize: 18,),);}),
                 ),
-              ),
+              ),),
 
               const SizedBox(height: 15,),
               InkWell(
